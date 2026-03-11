@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@keyframes slideCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+  70% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes slideCard2 {
+  0%,
+  100% {
+    transform: translateY(4px);
+  }
+  40% {
+    transform: translateY(-2px);
+  }
+  70% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes slideCard3 {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+  40% {
+    transform: translateY(2px);
+  }
+  70% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseWidth {
+  0% {
+    transform: scaleX(0.3);
+  }
+  40% {
+    transform: scaleX(1);
+  }
+  70% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(0.9);
+  }
+}
+

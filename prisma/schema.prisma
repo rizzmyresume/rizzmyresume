@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(cuid())
+  email       String        @unique
+  name        String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  experiences Experience[]
+  skills      Skill[]
+  transcripts Transcript[]
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  title       String
+  company     String?
+  startDate   DateTime?
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  summary     String?
+  highlights  String[] @default([])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  name      String
+  category  String?  // e.g. language, framework, database
+  level     String?  // e.g. beginner, intermediate, advanced
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transcript {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  sourceType  String   // e.g. voice, upload, manual
+  rawText     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
