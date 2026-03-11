@@ -1,0 +1,17 @@
+:root {
+  --accent: #ff4ecd;
+  --accent-soft: rgba(255, 78, 205, 0.12);
+  --border-subtle: #222;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--accent-soft);
+  color: #fff;
+  font-size: 12px;
+}
