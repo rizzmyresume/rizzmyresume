@@ -1,59 +1,54 @@
 "use client";
 
-import SectionDivider from "../components/ui/SectionDivider";
+import { useState } from "react";
 
-import SectionDivider from "../components/ui/SectionDivider";
-import Card from "../components/ui/Card";
-import Button from "../components/ui/Button";
+export default function ResumePage() {
+  const [jobDescription, setJobDescription] = useState("");
+  const [resume, setResume] = useState("");
+  const [loading, setLoading] = useState(false);
 
-export default function HomePage() {
+  const generateResume = async () => {
+    setLoading(true);
+
+    const response = await fetch("/api/generate-resume", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ jobDescription }),
+    });
+
+    const data = await response.json();
+    setResume(data.resume);
+
+    setLoading(false);
+  };
+
   return (
-    <main className="home-page">
-      <section
-        className="hero-block"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
+    <main style={{ padding: "60px", maxWidth: "900px", margin: "auto" }}>
+      <h1>AI Resume Generator</h1>
+
+      <textarea
+        placeholder="Paste the job description here..."
+        rows={10}
+        style={{ width: "100%", marginTop: "20px", padding: "10px" }}
+        value={jobDescription}
+        onChange={(e) => setJobDescription(e.target.value)}
+      />
+
+      <button
+        style={{ marginTop: "20px", padding: "10px 20px" }}
+        onClick={generateResume}
       >
-        <Card>
-          <h1 style={{ margin: 0, marginBottom: "12px" }}>RizzMyResume</h1>
-          <p style={{ margin: 0, marginBottom: "16px", maxWidth: 420 }}>
-            Paste your job description, upload your experience, and get an
-            AI-tailored resume and match score in seconds.
-          </p>
-          <Button onClick={() => (window.location.href = "/dashboard")}>
-            Get started
-          </Button>
-        </Card>
-      </section>
+        {loading ? "Generating..." : "Generate Resume"}
+      </button>
 
-      <SectionDivider />
-
-      <section
-        className="hero-block"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <p>Section for how it works / steps (coming soon).</p>
-      </section>
-
-      <SectionDivider />
-
-      <section
-        className="hero-block tall"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <p>Section for testimonials or sample resumes (coming soon).</p>
-      </section>
+      {resume && (
+        <div style={{ marginTop: "40px", whiteSpace: "pre-wrap" }}>
+          <h2>Generated Resume</h2>
+          <p>{resume}</p>
+        </div>
+      )}
     </main>
   );
 }
