@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+:root {
+  --bg: 22 22 20;
+  --bg-elevated: 38 36 33;
+  --border: 64 60 54;
+  --text: 235 229 219;
+  --text-muted: 168 153 132;
+  --accent: 214 158 46;
+  --accent-dim: 181 118 20;
+}
+
 @keyframes slideCard {
   0%,
   100% {
@@ -52,5 +62,51 @@
   100% {
     transform: scaleX(0.9);
   }
+}
+
+/* Scroll-in animations for sample resumes */
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-up-in {
+  animation: slideUpIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-slide-left-in {
+  animation: slideLeftIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-slide-right-in {
+  animation: slideRightIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 

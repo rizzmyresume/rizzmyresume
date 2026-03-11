@@ -3,34 +3,35 @@ import type { ReactNode } from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Xenon CV",
+  title: "rizzmyresume",
   description: "Create your resume in one click.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark bg-slate-950 text-slate-50">
-      <body className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-50 antialiased">
+    <html lang="en" className="dark">
+      <body
+        className="min-h-screen bg-[#14141C] text-white antialiased"
+        style={{ colorScheme: "dark" }}
+      >
         <div className="min-h-screen flex flex-col">
-          <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
+          <header className="border-b border-white/10 bg-[#14141C]/95 backdrop-blur">
             <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
               <a href="/" className="inline-flex items-center gap-2">
-                <div className="h-6 w-6 rounded-lg bg-gradient-to-tr from-cyan-400 via-sky-500 to-indigo-500 shadow-[0_0_18px_rgba(56,189,248,0.9)]" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs font-semibold tracking-[0.18em] uppercase">
-                    Xenon CV
-                  </span>
-                  <span className="text-[10px] text-slate-400 tracking-[0.18em] uppercase">
-                    Resume, Rewired
-                  </span>
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500">
+                  <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
+                <span className="text-sm font-semibold text-white">rizzmyresume</span>
               </a>
-              <nav className="flex items-center gap-4 text-xs text-slate-400">
-                <a href="/vault" className="hover:text-slate-50 transition-colors">
-                  Vault
-                </a>
-                <a href="/generate" className="hover:text-slate-50 transition-colors">
-                  Reaction Engine
+              <nav className="flex items-center gap-6 text-sm text-white/80">
+                <a href="/#features" className="hover:text-white transition-colors">About</a>
+                <a href="/#features" className="hover:text-white transition-colors">Pricing</a>
+                <a href="/vault" className="hover:text-white transition-colors">Vault</a>
+                <a href="/generate" className="hover:text-white transition-colors">Reaction Engine</a>
+                <a href="/vault" className="rounded-full border border-white/30 bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors">
+                  Login / Signup
                 </a>
               </nav>
             </div>

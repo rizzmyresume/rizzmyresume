@@ -1,132 +1,164 @@
-import { Mic } from "lucide-react";
+import {
+  Mic,
+  FileUp,
+  FileText,
+  GraduationCap,
+  Briefcase,
+  Code2,
+  FolderGit2,
+  Linkedin,
+} from "lucide-react";
 import Link from "next/link";
+
+const IMPORT_METHODS = [
+  {
+    title: "Import from LinkedIn",
+    description:
+      "Connect your LinkedIn profile and import your professional history instantly.",
+    icon: <Linkedin className="h-6 w-6 text-[#0A66C2]" />,
+  },
+  {
+    title: "Upload Docs/Transcripts",
+    description:
+      "Upload existing resumes, transcripts, or documents to extract your information.",
+    icon: <FileUp className="h-6 w-6 text-violet-400" />,
+  },
+  {
+    title: "Start from Scratch",
+    description:
+      "Fill in your information manually with our guided form.",
+    icon: <FileText className="h-6 w-6 text-emerald-400" />,
+  },
+];
+
+const INFO_CARDS = [
+  {
+    title: "Education & Transcripts",
+    subtitle: "Academic background, degrees, certifications",
+    addLabel: "Add Education",
+    icon: <GraduationCap className="h-5 w-5 text-sky-400" />,
+  },
+  {
+    title: "Technical Skills",
+    subtitle: "Languages, frameworks, databases, tools",
+    addLabel: "Add Skill",
+    icon: <Code2 className="h-5 w-5 text-violet-400" />,
+    skills: ["Python", "React", "Node.js", "PostgreSQL"],
+  },
+  {
+    title: "Work Experience",
+    subtitle: "Employment history and responsibilities",
+    addLabel: "Add Experience",
+    icon: <Briefcase className="h-5 w-5 text-violet-400" />,
+  },
+  {
+    title: "Projects & Research",
+    subtitle: "Personal projects, research work, publications",
+    addLabel: "Add Project",
+    icon: <FolderGit2 className="h-5 w-5 text-emerald-400" />,
+  },
+];
 
 export default function VaultPage() {
   return (
-    <div className="space-y-8">
-      <header className="space-y-2">
-        <p className="text-[11px] uppercase tracking-[0.22em] text-cyan-300">
-          Identity Vault
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Store your story once. Reuse it everywhere.
+    <div className="space-y-12">
+      <header className="text-center">
+        <h1 className="text-3xl font-bold tracking-tight text-white">
+          Let&apos;s Get Started
         </h1>
-        <p className="max-w-2xl text-sm text-slate-400">
-          Education, experience, skills, and raw brain dumps live here. The Reaction Engine
-          will pull from this vault every time you tailor a new CV.
+        <p className="mt-2 text-white/60">
+          Build your Identity Vault — the foundation of all your resumes
         </p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)]">
-        {/* Left: Voice + transcripts */}
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-700/80 bg-slate-900/80 p-4 shadow-[0_18px_40px_rgba(0,0,0,0.9)]">
-            <div className="flex items-center justify-between gap-2">
-              <div>
-                <h2 className="text-sm font-medium">Raw Brain Dumps</h2>
-                <p className="text-xs text-slate-400">
-                  Throw your unstructured thoughts, transcripts, and notes here. Xenon will turn
-                  them into structured experience later.
-                </p>
-              </div>
-              <Link
-                href="/generate"
-                className="rounded-full border border-slate-700/70 px-3 py-1 text-[11px] text-slate-300 hover:border-cyan-400/60 hover:text-cyan-200 transition-colors"
-              >
-                Go to Reaction Engine
-              </Link>
-            </div>
-
-            <div className="mt-4 space-y-3">
-              <div className="rounded-xl border border-slate-700/80 bg-slate-950/80 px-3 py-2 text-xs text-slate-300">
-                “Summer 2024 internship at a fintech. Built internal tools, lots of data pipelines
-                and dashboards. Helped cut manual reporting from days to minutes...”
-              </div>
-              <div className="rounded-xl border border-dashed border-slate-700/80 bg-slate-950/40 px-3 py-6 text-center text-xs text-slate-500">
-                Drop transcripts, notes, or upload call summaries here.
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-cyan-400/40 bg-slate-900/90 p-4 shadow-[0_18px_48px_rgba(8,47,73,0.9)]">
-            <div className="flex items-center gap-3">
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/60 bg-gradient-to-tr from-cyan-500/40 via-sky-500/20 to-transparent shadow-[0_0_30px_rgba(34,211,238,0.9)]">
-                <div className="absolute h-full w-full animate-ping rounded-full border border-cyan-400/40" />
-                <Mic className="relative h-5 w-5 text-cyan-100" />
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-medium">Voice Input</p>
-                <p className="text-xs text-slate-300">
-                  Tap to simulate speaking your history. We&apos;ll transcribe and tag skills,
-                  metrics, and outcomes behind the scenes.
-                </p>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-xs font-medium text-cyan-200 ring-1 ring-cyan-400/60 hover:bg-slate-900 transition-colors"
+      {/* Import Methods */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold text-white">Import Methods</h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          {IMPORT_METHODS.map((m) => (
+            <div
+              key={m.title}
+              className="rounded-2xl border border-white/10 bg-[#1F1F2C] p-5"
             >
-              <Mic className="h-4 w-4" />
-              <span>Simulate speaking · “Tell me about your last role...”</span>
-            </button>
-          </div>
+              <div className="flex justify-center">{m.icon}</div>
+              <h3 className="mt-3 font-semibold text-white">{m.title}</h3>
+              <p className="mt-1 text-sm text-white/60">{m.description}</p>
+            </div>
+          ))}
         </div>
+      </section>
 
-        {/* Right: Structured sections */}
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-700/80 bg-slate-900/80 p-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-medium">Education</h2>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-slate-500">
-                Degrees · Coursework · GPA
-              </span>
+      {/* Speak Your Story */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold text-white">Speak Your Story</h2>
+        <div className="rounded-2xl border border-white/10 bg-[#1F1F2C] p-8 text-center">
+          <p className="text-sm text-white/60">
+            Prefer to talk? Use your voice to describe your experience, and our
+            AI will structure it for you.
+          </p>
+          <button
+            type="button"
+            className="mt-6 flex flex-col items-center gap-2"
+          >
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-violet-500/30 text-violet-400 ring-4 ring-violet-500/20 transition hover:bg-violet-500/40">
+              <Mic className="h-10 w-10" />
             </div>
-            <div className="mt-3 space-y-2 text-xs text-slate-300">
-              <div className="flex items-baseline justify-between">
-                <span>Computer Science, BSc</span>
-                <span className="text-slate-500">2022 – 2026</span>
+            <span className="text-sm text-white/70">Click to start recording</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Your Information */}
+      <section className="space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <h2 className="text-lg font-semibold text-white">Your Information</h2>
+          <Link
+            href="/generate"
+            className="inline-flex items-center gap-2 rounded-full bg-violet-500 px-4 py-2 text-sm font-medium text-white hover:bg-violet-400 transition-colors"
+          >
+            Continue to Matcher
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {INFO_CARDS.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-2xl border border-white/10 bg-[#1F1F2C] p-5"
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-violet-400">
+                  {card.icon}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-white">{card.title}</h3>
+                  <p className="mt-0.5 text-xs text-white/50">{card.subtitle}</p>
+                  {card.skills ? (
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {card.skills.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full bg-violet-500/20 px-2.5 py-0.5 text-xs text-violet-200"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+                  <button
+                    type="button"
+                    className="mt-3 text-xs font-medium text-white/80 hover:text-white"
+                  >
+                    + {card.addLabel}
+                  </button>
+                </div>
               </div>
-              <p className="text-slate-400">Dalhousie University · GPA 3.8</p>
-              <p className="text-slate-500">Data Structures · Databases · ML · HCI</p>
             </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-700/80 bg-slate-900/80 p-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-medium">Work Experience</h2>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-slate-500">
-                Roles · Impact · Metrics
-              </span>
-            </div>
-            <div className="mt-3 space-y-2 text-xs text-slate-300">
-              <p className="font-medium">Software Engineer Intern · Fintech Co</p>
-              <p className="text-slate-400">
-                Built internal tools and dashboards that reduced monthly reporting time by 80%.
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-700/80 bg-slate-900/80 p-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-medium">Technical Skills</h2>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-slate-500">
-                Languages · Frameworks · Databases
-              </span>
-            </div>
-            <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] text-slate-200">
-              {["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Prisma"].map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-slate-700/80 bg-slate-950/80 px-2 py-0.5"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
   );
 }
-
