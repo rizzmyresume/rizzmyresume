@@ -1,3 +1,7 @@
+"use client";
+
+import SectionDivider from "../components/ui/SectionDivider";
+
 import SectionDivider from "../components/ui/SectionDivider";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
